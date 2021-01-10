@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.1</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>moe.ofs.addon</groupId>
+    <artifactId>static-aircraft-display</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>static-aircraft-display</name>
+    <description>An addon for Project Lava that will spawn a matching static object of flyable aircraft parked on
+        apron.
+    </description>
+
+    <properties>
+        <java.version>8</java.version>
+        <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
+        <ascpectj.version>1.9.2</ascpectj.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>moe.ofs</groupId>
+            <artifactId>backend-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+<!--            <plugin>-->
+<!--                <groupId>com.github.m50d</groupId>-->
+<!--                <artifactId>aspectj-maven-plugin</artifactId>-->
+<!--                <version>1.11.1</version>-->
+<!--                <dependencies>-->
+<!--                    <dependency>-->
+<!--                        <groupId>org.aspectj</groupId>-->
+<!--                        <artifactId>aspectjtools</artifactId>-->
+<!--                        <version>${ascpectj.version}</version>-->
+<!--                    </dependency>-->
+<!--                </dependencies>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>default-compile</id>-->
+<!--                        <phase>process-classes</phase>-->
+<!--                        <goals>-->
+<!--                            &lt;!&ndash; use this goal to weave all your main classes &ndash;&gt;-->
+<!--                            <goal>compile</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <weaveDirectories>-->
+<!--                                <weaveDirectory>${project.build.directory}/classes</weaveDirectory>-->
+<!--                            </weaveDirectories>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                    <execution>-->
+<!--                        <id>default-testCompile</id>-->
+<!--                        <phase>process-test-classes</phase>-->
+<!--                        <goals>-->
+<!--                            &lt;!&ndash; use this goal to weave all your test classes &ndash;&gt;-->
+<!--                            <goal>test-compile</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <weaveDirectories>-->
+<!--                                <weaveDirectory>${project.build.testOutputDirectory}</weaveDirectory>-->
+<!--                            </weaveDirectories>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--                <configuration>-->
+<!--                    &lt;!&ndash;                    <source>1.8</source>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <target>1.8</target>&ndash;&gt;-->
+<!--                    <excludes>-->
+<!--                        <exclude>**/*.java</exclude>-->
+<!--                    </excludes>-->
+<!--                    <complianceLevel>${maven.compiler.target}</complianceLevel>-->
+<!--                    <source>${maven.compiler.target}</source>-->
+<!--                    <target>${maven.compiler.target}</target>-->
+<!--                    <showWeaveInfo>true</showWeaveInfo>-->
+<!--                    <verbose>true</verbose>-->
+<!--                    <Xlint>ignore</Xlint>-->
+<!--                    <encoding>${project.build.sourceEncoding}</encoding>-->
+<!--                    <forceAjcCompile>true</forceAjcCompile>-->
+<!--                    <sources/>&lt;!&ndash; this is important!&ndash;&gt;-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+                <version>3.8.1</version>
+            </plugin>
+
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-clean-plugin</artifactId>-->
+<!--                <version>3.1.0</version>-->
+<!--                <configuration>-->
+<!--                    <filesets>-->
+<!--                        <fileset>-->
+<!--                            <directory>src/main/resources/static</directory>-->
+<!--                        </fileset>-->
+<!--                        <fileset>-->
+<!--                            <directory>${basedir}/web/dist</directory>-->
+<!--                        </fileset>-->
+<!--                    </filesets>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+<!--                    <execution>-->
+<!--                        <id>exec-npm-install</id>-->
+<!--                        <phase>validate</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>exec</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <executable>npm</executable>-->
+<!--                            <arguments>-->
+<!--                                <argument>install</argument>-->
+<!--                            </arguments>-->
+<!--                            <workingDirectory>${basedir}/web</workingDirectory>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+
+<!--                    <execution>-->
+<!--                        <id>exec-npm-run-build</id>-->
+<!--                        <phase>validate</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>exec</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <executable>npm</executable>-->
+<!--                            <arguments>-->
+<!--                                <argument>run</argument>-->
+<!--                                <argument>build</argument>-->
+<!--                            </arguments>-->
+<!--                            <workingDirectory>${basedir}/web</workingDirectory>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+<!--                    <execution>-->
+<!--                        <id>copy-spring-boot-webapp</id>-->
+<!--                        <phase>validate</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>copy-resources</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <encoding>utf-8</encoding>-->
+<!--                            <outputDirectory>${basedir}/src/main/resources/static/${project.groupId}-${project.artifactId}-${project.version}</outputDirectory>-->
+<!--                            <resources>-->
+<!--                                <resource>-->
+<!--                                    <directory>${basedir}/web/dist</directory>-->
+<!--                                </resource>-->
+<!--                            </resources>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>moe.ofs</groupId>
+                <artifactId>plugin-builder-maven-plugin</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+                <executions>
+                    <execution>
+<!--                        <configuration>-->
+<!--                            <webContentPath>web</webContentPath>-->
+<!--                            <webFrameworkMode>Vue</webFrameworkMode>-->
+<!--                        </configuration>-->
+                        <goals>
+<!--                            <goal>web-builder</goal>-->
+                            <goal>plugin-builder</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                            <excludeClassifiers>addon-dependency</excludeClassifiers>
+                            <excludeTransitive>true</excludeTransitive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                        <manifestEntries>
+                            <Class-Path>lib/</Class-Path>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
