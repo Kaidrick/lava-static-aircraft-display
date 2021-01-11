@@ -44,6 +44,12 @@
             <artifactId>backend-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>moe.ofs</groupId>
+            <artifactId>connector</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
