@@ -73,7 +73,7 @@ public class SlotChangeHookInterceptServiceImpl
     @Scheduled(fixedDelay = 200L)
     @LuaLoading
     public void bitter() throws IOException {
-        System.out.println("bitter bingo");
+//        System.out.println("bitter bingo");
         gather(SlotChangeProcessEntity.class);
 //        poll(SlotChangeProcessEntity.class)
 //                .forEach(slotChangeProcessEntity ->
